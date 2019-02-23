@@ -1,0 +1,37 @@
+package pl.smog.mapper;
+
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
+import org.mapstruct.Mappings;
+import org.mapstruct.Named;
+import pl.smog.dto.AirQualityIndexDto;
+import pl.smog.dto.MeasuredDataDto;
+import pl.smog.dto.SensorDto;
+import pl.smog.dto.StationDto;
+import pl.smog.entity.Emission;
+import pl.smog.entity.Station;
+
+@Mapper(componentModel = "spring")
+public interface EmissionMapper {
+
+    @Mapping(target="idStation", source="stationDto.id")
+    Emission stationDtoToEmission(StationDto stationDto);
+
+    @Mapping(target="sensorEmissions.substanceCodename", source="parameter.paramCode",
+            qualifiedByName = "toLowerCase")
+    Emission.SensorEmissions sensorDtoToSensorEmissions(SensorDto.Parameter parameter);
+
+    @Mappings({
+            @Mapping(target="sensorEmissions.values.date", source="measure.date"),
+            @Mapping(target="sensorEmissions.values.value", source="measure.value"),
+    })
+    Emission.Measure measuredDataDtoToMeasure(MeasuredDataDto.Measure measure);
+
+    @Named("toLowerCase")
+    default String toLowerCase(String str) {
+        return str.toLowerCase();
+    }
+
+
+
+}
