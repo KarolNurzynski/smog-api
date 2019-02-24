@@ -10,8 +10,8 @@ import java.util.List;
 public interface ISmogService {
 
     List<Station> getAllStations();
-    Station getStationById(Long id);
-    Emission getEmissionsById(Long id);
+    Station getStationById(int id);
+    List<Emission> getEmissionsByStationId(int id);
     void seedDataFromApi();
 
 }

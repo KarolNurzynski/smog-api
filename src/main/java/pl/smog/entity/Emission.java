@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Data
+@NoArgsConstructor
 @Document(collection = "emission")
 public class Emission {
 
@@ -16,6 +17,10 @@ public class Emission {
     public ObjectId id;
     public int idStation;
     public List<SensorEmissions> sensorEmissions = new ArrayList<>();
+
+    public Emission(int idStation) {
+        this.idStation = idStation;
+    }
 
     public void addSensorEmissions(SensorEmissions sensorEmissionsElement) {
         sensorEmissions.add(sensorEmissionsElement);

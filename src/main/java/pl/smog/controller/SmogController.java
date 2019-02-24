@@ -27,16 +27,16 @@ public class SmogController {
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     @ResponseBody
-    public Station get(@PathVariable("id") Long id) {
+    public Station get(@PathVariable("id") int id) {
 
         return iSmogService.getStationById(id);
     }
 
     @RequestMapping(value = "/emissions/{id}", method = RequestMethod.GET)
     @ResponseBody
-    public Emission getEmissions(@PathVariable("id") Long id) {
+    public List<Emission> getEmissions(@PathVariable("id") int id) {
 
-        return iSmogService.getEmissionsById(id);
+        return iSmogService.getEmissionsByStationId(id);
     }
 
     @RequestMapping(value = "/seedDataFromApi", method = RequestMethod.GET)

@@ -16,12 +16,6 @@ import pl.smog.entity.Station;
 @Mapper(componentModel = "spring")
 public interface EmissionMapper {
 
-    @Mappings({
-            @Mapping(target="idStation", source="id"),
-            @Mapping(target="id", ignore = true)
-    })
-    Emission stationDtoToEmission(StationDto stationDto);
-
     @Mapping(target="substanceCodename", source="parameter.paramCode",
             qualifiedByName = "toLowerCase")
     Emission.SensorEmissions sensorDtoToSensorEmissions(SensorDto.Parameter parameter);
