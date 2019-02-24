@@ -15,7 +15,7 @@ public class MeasuredDataDto {
     private List<Measure> values;
 
     @Data
-    public class Measure {
+    public static class Measure {
 
         @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "YYYY-MM-dd HH:mm")
         @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)

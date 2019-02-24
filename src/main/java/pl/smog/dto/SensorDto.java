@@ -12,7 +12,7 @@ public class SensorDto {
     private Parameter param;
 
     @Data
-    public class Parameter {
+    public static class Parameter {
         private String paramName;
         private String paramFormula;
         private String paramCode;

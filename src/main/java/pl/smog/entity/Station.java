@@ -2,10 +2,8 @@ package pl.smog.entity;
 
 import lombok.Data;
 import org.bson.types.ObjectId;
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-
-import javax.persistence.Column;
-import javax.persistence.Id;
 
 @Data
 @Document(collection = "station")
@@ -22,7 +20,7 @@ public class Station {
 
 
     @Data
-    public class StationLocation {
+    public static class StationLocation {
         private String cityName;
         private String communeName;
         private String districtName;
@@ -31,38 +29,30 @@ public class Station {
     }
 
     @Data
-    public class StationEmissions {
+    public static class StationEmissions {
 
         private float pm10;
-        @Column(name = "ipm10")
-        private static final String IMP10 = "b/d";
+        private String ipm10 = "b/d";
 
         private float pm25;
-        @Column(name = "ipm25")
-        private static final String IPM25 = "b/d";
+        private String ipm25 = "b/d";
 
         private float co;
-        @Column(name = "ico")
-        private static final String ICO = "b/d";
+        private String ico = "b/d";
 
         private float c6h6;
-        @Column(name = "ic6h6")
-        private static final String IC6H6 = "b/d";
+        private String ic6h6 = "b/d";
 
         private float o3;
-        @Column(name = "io3")
-        private static final String IO3 = "b/d";
+        private String io3 = "b/d";
 
         private float no2;
-        @Column(name = "ino2")
-        private static final String INO2 = "b/d";
+        private String ino2 = "b/d";
 
         private float so2;
-        @Column(name = "iso2")
-        private static final String ISO2 = "b/d";
+        private String iso2 = "b/d";
 
-        @Column(name = "ijp")
-        private static final String IJP = "b/d";
+        private String ijp = "b/d";
     }
 
 }

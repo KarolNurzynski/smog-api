@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import pl.smog.dto.AirQualityIndexDto;
 import pl.smog.dto.MeasuredDataDto;
@@ -18,6 +19,7 @@ import pl.smog.repository.StationRepository;
 import java.util.ArrayList;
 import java.util.List;
 
+@Service
 public class SmogService implements ISmogService {
 
     @Autowired
@@ -74,7 +76,7 @@ public class SmogService implements ISmogService {
             //pupulating Station with data from API
             Station station = stationMapper.stationDtoToStation(stationDto);
             Station.StationLocation stationLocation = stationMapper.stationDtoToStationLocation(stationDto.getCity(),
-                                                                                    stationDto.getCity().getCommune());
+                                                                    stationDto.getCity().getCommune(), stationDto);
             Station.StationEmissions stationEmissions = stationMapper.
                                                 airQualityIndexDtoToStationEmissions(aqindexFromApi.getPm10IndexLevel(),
                                                                                      aqindexFromApi.getPm25IndexLevel(),

@@ -3,37 +3,35 @@ package pl.smog.mapper;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;
+import org.springframework.stereotype.Component;
 import pl.smog.dto.AirQualityIndexDto;
 import pl.smog.dto.StationDto;
 import pl.smog.entity.Station;
 
+@Component
 @Mapper(componentModel = "spring")
 public interface StationMapper {
 
     @Mappings({
             @Mapping(target="idStation", source="stationDto.id"),
-            @Mapping(target="stationName", source="stationDto.stationName"),
-            @Mapping(target="stationLocation.addressStreet", source="stationDto.addressStreet"),
+            @Mapping(target="id", ignore = true)
     })
     Station stationDtoToStation(StationDto stationDto);
 
-    @Mappings({
-            @Mapping(target="stationLocation.cityName", source="cityDto.name"),
-            @Mapping(target="stationLocation.communeName", source="communeDto.communeName"),
-            @Mapping(target="stationLocation.districtName", source="communeDto.districtName"),
-            @Mapping(target="stationLocation.provinceName", source="communeDto.provinceName")
-    })
-    Station.StationLocation stationDtoToStationLocation(StationDto.CityDto cityDto, StationDto.CommuneDto communeDto);
+
+    @Mapping(target="cityName", source="cityDto.name")
+    Station.StationLocation stationDtoToStationLocation(StationDto.CityDto cityDto, StationDto.CommuneDto communeDto,
+                                                        StationDto stationDto);
 
     @Mappings({
-            @Mapping(target="stationEmissions.IMP10", source="pm10IndexLevel.indexLevelName"),
-            @Mapping(target="stationEmissions.IPM25", source="pm25IndexLevel.indexLevelName"),
-            @Mapping(target="stationEmissions.ICO", source="coIndexLevel.indexLevelName"),
-            @Mapping(target="stationEmissions.IC6H6", source="c6H6IndexLevel.indexLevelName"),
-            @Mapping(target="stationEmissions.IO3", source="o3IndexLevel.indexLevelName"),
-            @Mapping(target="stationEmissions.INO2", source="no2IndexLevel.indexLevelName"),
-            @Mapping(target="stationEmissions.ISO2", source="so2IndexLevel.indexLevelName"),
-            @Mapping(target="stationEmissions.IJP", source="stIndexLevel.indexLevelName")
+            @Mapping(target="ipm10", source="pm10IndexLevel.indexLevelName"),
+            @Mapping(target="ipm25", source="pm25IndexLevel.indexLevelName"),
+            @Mapping(target="ico", source="coIndexLevel.indexLevelName"),
+            @Mapping(target="ic6h6", source="c6H6IndexLevel.indexLevelName"),
+            @Mapping(target="io3", source="o3IndexLevel.indexLevelName"),
+            @Mapping(target="ino2", source="no2IndexLevel.indexLevelName"),
+            @Mapping(target="iso2", source="so2IndexLevel.indexLevelName"),
+            @Mapping(target="ijp", source="stIndexLevel.indexLevelName")
     })
     Station.StationEmissions airQualityIndexDtoToStationEmissions(AirQualityIndexDto.Pm10IndexLevel pm10IndexLevel,
                                                                   AirQualityIndexDto.Pm25IndexLevel pm25IndexLevel,

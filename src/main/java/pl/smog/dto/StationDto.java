@@ -15,13 +15,13 @@ public class StationDto {
     private CityDto city;
 
     @Data
-    public class CityDto {
+    public static class CityDto {
         private String name;
         private CommuneDto commune;
     }
 
     @Data
-    public class CommuneDto {
+    public static class CommuneDto {
         private String communeName;
         private String districtName;
         private String provinceName;
