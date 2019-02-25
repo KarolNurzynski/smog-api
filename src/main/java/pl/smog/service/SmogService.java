@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import pl.smog.dto.AirQualityIndexDto;
@@ -61,6 +62,7 @@ public class SmogService implements ISmogService {
 
     //This method is only for populating smog-api with data from external API
     // TODO: 23.02.19 scheduling method + unit tests + null checks in needed + javadoc + extract to GiosService
+    @Scheduled(cron = "${cron.dataFromGios}")
     @Override
     public void seedDataFromApi() {
 
