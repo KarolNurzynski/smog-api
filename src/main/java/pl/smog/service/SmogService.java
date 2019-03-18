@@ -62,7 +62,7 @@ public class SmogService implements ISmogService {
 
     //This method is only for populating smog-api with data from external API
     // TODO: 23.02.19 scheduling method + unit tests + null checks in needed + javadoc + extract to GiosService
-    @Scheduled(cron = "${cron.dataFromGios}")
+//    @Scheduled(cron = "${cron.dataFromGios}")
     @Override
     public void seedDataFromApi() {
 

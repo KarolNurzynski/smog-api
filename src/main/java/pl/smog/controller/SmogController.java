@@ -18,6 +18,13 @@ public class SmogController {
     @Autowired
     private ISmogService iSmogService;
 
+    @RequestMapping(value = "/test", method = RequestMethod.GET)
+    @ResponseBody
+    public String test() {
+
+        return "This is test msg";
+    }
+
     @RequestMapping(value = "/all", method = RequestMethod.GET)
     @ResponseBody
     public List<Station> getAll() {
